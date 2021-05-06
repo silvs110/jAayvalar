@@ -1,9 +1,7 @@
 package org.padaiyal.utilities.aayvalar.parameters;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.params.converter.ConvertWith;
 import org.padaiyal.utilities.aayvalar.parameters.units.UnitTypeEnumInterface;
-import org.padaiyal.utilities.aayvalar.testutils.ExceptionClassConverter;
 
 /**
  * Abstracts the unit tests for measurable parameters.
@@ -102,8 +100,7 @@ public abstract class MeasurableParameterTest<
       ValueT currentValue,
       UnitT currentUnit,
       UnitT resultUnit,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
     Assertions.assertThrows(
         expectedExceptionClass,

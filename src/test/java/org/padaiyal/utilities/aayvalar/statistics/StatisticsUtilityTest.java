@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.padaiyal.utilities.aayvalar.testutils.ExceptionClassConverter;
 import org.padaiyal.utilities.aayvalar.testutils.StringArrayConverter;
 
 /**
@@ -432,15 +431,14 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false, ARITHMETIC, NullPointerException.class",
-      "true, DONOTUSE, IllegalArgumentException.class",
-      "true,,NullPointerException.class"
+      "false, ARITHMETIC, java.lang.NullPointerException",
+      "true, DONOTUSE, java.lang.IllegalArgumentException",
+      "true,,java.lang.NullPointerException"
   })
   public void testGetMeanWithInvalidInput(
       boolean validCollection,
       MeanType meanType,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;
@@ -458,12 +456,11 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false,NullPointerException.class"
+      "false,java.lang.NullPointerException"
   })
   public void testGetModeWithInvalidInput(
       boolean validCollection,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;
@@ -480,12 +477,11 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false,NullPointerException.class"
+      "false,java.lang.NullPointerException"
   })
   public void testGetMedianWithInvalidInput(
       boolean validCollection,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;
@@ -503,15 +499,14 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false, ARITHMETIC, NullPointerException.class",
-      "true, DONOTUSE, IllegalArgumentException.class",
-      "true,,NullPointerException.class"
+      "false, ARITHMETIC, java.lang.NullPointerException",
+      "true, DONOTUSE, java.lang.IllegalArgumentException",
+      "true,,java.lang.NullPointerException"
   })
   public void testGetVarianceWithInvalidInput(
       boolean validCollection,
       MeanType meanType,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;
@@ -529,15 +524,14 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false, ARITHMETIC, NullPointerException.class",
-      "true, DONOTUSE, IllegalArgumentException.class",
-      "true,,NullPointerException.class"
+      "false, ARITHMETIC, java.lang.NullPointerException",
+      "true, DONOTUSE, java.lang.IllegalArgumentException",
+      "true,,java.lang.NullPointerException"
   })
   public void testGetStandardDeviationWithInvalidInput(
       boolean validCollection,
       MeanType meanType,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;
@@ -554,12 +548,11 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false,NullPointerException.class"
+      "false,java.lang.NullPointerException"
   })
   public void testGetFrequencyDistributionWithInvalidInput(
       boolean validCollection,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;
@@ -577,14 +570,13 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false,1,NullPointerException.class",
-      "true,-1,IllegalArgumentException.class"
+      "false,1,java.lang.NullPointerException",
+      "true,-1,java.lang.IllegalArgumentException"
   })
   public void testGetTopFrequentElementsWithInvalidInput(
       boolean validCollection,
       int topNumbers,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;
@@ -601,12 +593,11 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false,NullPointerException.class"
+      "false,java.lang.NullPointerException"
   })
   public void testGetMaxWithInvalidInput(
       boolean validCollection,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;
@@ -623,12 +614,11 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false,NullPointerException.class"
+      "false,java.lang.NullPointerException"
   })
   public void testGetMinWithInvalidInput(
       boolean validCollection,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;
@@ -646,14 +636,13 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false,1,NullPointerException.class",
-      "true,-1,IllegalArgumentException.class"
+      "false,1,java.lang.NullPointerException",
+      "true,-1,java.lang.IllegalArgumentException"
   })
   public void testGetTopMaxElementsWithInvalidInput(
       boolean validCollection,
       int topNumbers,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;
@@ -671,14 +660,13 @@ public class StatisticsUtilityTest {
    */
   @ParameterizedTest
   @CsvSource({
-      "false,1,NullPointerException.class",
-      "true,-1,IllegalArgumentException.class"
+      "false,1,java.lang.NullPointerException",
+      "true,-1,java.lang.IllegalArgumentException"
   })
   public void testGetTopMinElementsWithInvalidInput(
       boolean validCollection,
       int topNumbers,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
 
     List<Integer> inputCollection = validCollection ? new ArrayList<>() : null;

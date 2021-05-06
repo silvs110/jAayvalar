@@ -1,10 +1,8 @@
 package org.padaiyal.utilities.aayvalar.parameters;
 
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.padaiyal.utilities.aayvalar.parameters.units.VolumeUnitEnum;
-import org.padaiyal.utilities.aayvalar.testutils.ExceptionClassConverter;
 
 /**
  * Tests the VolumeParameter.
@@ -62,20 +60,19 @@ public class VolumeParameterTest
 
   @ParameterizedTest
   @CsvSource({
-      "-1, LITER, US_CUP, IllegalArgumentException.class",
-      ", LITER, US_GALLON, NullPointerException.class",
-      "1,, US_GALLON, NullPointerException.class",
-      "1, LITER,, NullPointerException.class",
-      "1, LITER, UNKNOWN, UnsupportedOperationException.class",
-      "1, UNKNOWN, LITER, UnsupportedOperationException.class"
+      "-1, LITER, US_CUP, java.lang.IllegalArgumentException",
+      ", LITER, US_GALLON, java.lang.NullPointerException",
+      "1,, US_GALLON, java.lang.NullPointerException",
+      "1, LITER,, java.lang.NullPointerException",
+      "1, LITER, UNKNOWN, java.lang.UnsupportedOperationException",
+      "1, UNKNOWN, LITER, java.lang.UnsupportedOperationException"
   })
   @Override
   void testConvertToWithInvalidInputs(
       Double currentValue,
       VolumeUnitEnum currentUnit,
       VolumeUnitEnum resultUnit,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
     super.testConvertToWithInvalidInputs(
         currentValue,

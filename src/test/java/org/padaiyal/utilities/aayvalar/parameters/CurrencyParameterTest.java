@@ -4,9 +4,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.padaiyal.utilities.aayvalar.testutils.ExceptionClassConverter;
 
 /**
  * Tests the CurrencyParameter.
@@ -68,19 +66,18 @@ public class CurrencyParameterTest {
    */
   @ParameterizedTest
   @CsvSource({
-      ", USD, CAD, NullPointerException.class",
-      "3,, USD, NullPointerException.class",
-      "2, USD,, NullPointerException.class",
-      "-3.14, INR, USD, IllegalArgumentException.class",
-      "3.14, TEST, USD, IllegalArgumentException.class",
-      "3.14, INR, USDA, IllegalArgumentException.class",
+      ", USD, CAD, java.lang.NullPointerException",
+      "3,, USD, java.lang.NullPointerException",
+      "2, USD,, java.lang.NullPointerException",
+      "-3.14, INR, USD, java.lang.IllegalArgumentException",
+      "3.14, TEST, USD, java.lang.IllegalArgumentException",
+      "3.14, INR, USDA, java.lang.IllegalArgumentException",
   })
   void testConvertToWithInvalidInputs(
       Double currentValue,
       String currentUnit,
       String resultUnit,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
     Assertions.assertThrows(
         expectedExceptionClass,
