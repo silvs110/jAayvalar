@@ -60,15 +60,16 @@ public class StringArrayConverter extends SimpleArgumentConverter {
    * @throws ArgumentConversionException When the provided targetType is not supported.
    */
   public static Object[] convertArrayStringToArray(Object arrayObject, Class<?> targetType) {
-    Objects.requireNonNull(arrayObject);
+    if (arrayObject == null) {
+      return null;
+    }
     Objects.requireNonNull(targetType);
     dependantValuesInitializer.run();
     if (arrayObject instanceof String && String[].class.isAssignableFrom(targetType)) {
       String arrayString = (String) arrayObject;
-      return arrayString.equals("")
-          ?
-          new String[]{} : arrayString.split(
-          PropertyUtility.getProperty("StringArrayConverter.commaSeparatedElements.regex"));
+      return arrayString.length() <= 2
+          ? new String[]{} : arrayString.substring(1, arrayString.length() - 1)
+          .split(PropertyUtility.getProperty("StringArrayConverter.commaSeparatedElements.regex"));
     } else {
       throw new ArgumentConversionException(
           I18nUtility.getFormattedString(

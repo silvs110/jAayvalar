@@ -93,13 +93,13 @@ public class StatisticsUtility {
 
   /**
    * Get the mode from the provided collection.
-   * Mode is the most frequent number in a collection of numbers.
+   * Mode is the most frequent token in a collection of tokens.
    * For more information: https://en.wikipedia.org/wiki/Mode
    *
    * @param inputCollection The collection to retrieve the mode from.
    * @return The mode from the provided collection.
    */
-  public static Number getMode(Collection<? extends Number> inputCollection) {
+  public static <T> T getMode(Collection<T> inputCollection) {
     return getTopFrequentElements(inputCollection, 1).get(0);
   }
 
@@ -111,13 +111,12 @@ public class StatisticsUtility {
    * @param inputCollection The collection to retrieve its elements frequency.
    * @return The frequency distribution of the elements in the provided collection.
    */
-  public static Map<? extends Number, Long> getFrequencyDistribution(
-      Collection<? extends Number> inputCollection) {
+  public static <T> Map<T, Long> getFrequencyDistribution(Collection<T> inputCollection) {
     Objects.requireNonNull(inputCollection);
     return inputCollection.parallelStream()
         .collect(
             Collectors.groupingBy(
-                number -> number,
+                token -> token,
                 Collectors.counting()
             )
         );
@@ -130,8 +129,7 @@ public class StatisticsUtility {
    * @param topNumbers      The number of most frequent values.
    * @return The top most frequent numbers in the input collection.
    */
-  public static List<? extends Number> getTopFrequentElements(
-      Collection<? extends Number> inputCollection, int topNumbers) {
+  public static <T> List<T> getTopFrequentElements(Collection<T> inputCollection, int topNumbers) {
     Objects.requireNonNull(inputCollection);
     if (topNumbers < 1) {
       throw new IllegalArgumentException(

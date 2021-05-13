@@ -18,6 +18,7 @@ import org.padaiyal.utilities.aayvalar.testutils.StringArrayConverter;
 /**
  * Test Functionality of StatisticsUtilityTest.
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class StatisticsUtilityTest {
 
   /**
@@ -54,6 +55,7 @@ public class StatisticsUtilityTest {
     return switch (collectionType) {
       case "list" -> stream.collect(Collectors.toList());
       case "set" -> stream.collect(Collectors.toSet());
+      //noinspection SpellCheckingInspection
       case "linkedlist" -> stream.collect(Collectors.toCollection(LinkedList::new));
       default -> throw new IllegalStateException();
     };
@@ -71,16 +73,16 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int,list,5.0,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
-      "long,list,5.0,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
-      "float,list,3.62,ARITHMETIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
-      "double,list,3.62,ARITHMETIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
+      "int,list,5.0,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
+      "long,list,5.0,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
+      "float,list,3.62,ARITHMETIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
+      "double,list,3.62,ARITHMETIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
       // Test different collection types
-      "double,set,5.0,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
-      "double,linkedlist,5.0,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
+      "double,set,5.0,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
+      "double,linkedlist,5.0,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
       // Test with different means
-      "double,list,2.653028861687813,GEOMETRIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
-      "double,list,1.976971644704602,HARMONIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
+      "double,list,2.653028861687813,GEOMETRIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
+      "double,list,1.976971644704602,HARMONIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
   })
   public void testGetMeanWithValidInputs(String numericType, String collectionType,
       double expectedMean, MeanType meanType,
@@ -103,9 +105,9 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int,list,1,'0,0,0,0,1,1,1,1,1,2,3,4,5'",
-      "long,list,1,'0,0,0,0,1,1,1,1,1,2,3,4,5'",
-      "float,list,0.1,'0.1, 0.1, 0.1, 1.5, 2.4, 2.4'",
+      "int,list,1,'[0,0,0,0,1,1,1,1,1,2,3,4,5]'",
+      "long,list,1,'[0,0,0,0,1,1,1,1,1,2,3,4,5]'",
+      "float,list,0.1,'[0.1, 0.1, 0.1, 1.5, 2.4, 2.4]'",
       "double,list,0.1,'0.1, 0.1, 0.1, 1.5, 2.4, 2.4",
       // Test different collection types
       "double,linkedlist,0.1,'0.1, 0.1, 0.1, 1.5, 2.4, 2.4",
@@ -131,13 +133,13 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int,list,1.5,'0,0,0,0,1,1,2,2,3,4,4,4'",
-      "long,list,1.5,'0,0,0,0,1,1,2,2,3,4,4,4'",
-      "float,list,0.8,'0.1, 0.1, 0.1, 1.5, 2.4, 2.4'",
+      "int,list,1.5,'[0,0,0,0,1,1,2,2,3,4,4,4]'",
+      "long,list,1.5,'[0,0,0,0,1,1,2,2,3,4,4,4]'",
+      "float,list,0.8,'[0.1, 0.1, 0.1, 1.5, 2.4, 2.4]'",
       "double,list,0.8,'0.1, 0.1, 0.1, 1.5, 2.4, 2.4",
       // Test different collection types
-      "double,set,5,'1,2,3,4,5,6,7,8,9'",
-      "int,linkedlist,1.5,'0,0,0,0,1,1,2,2,3,4,4,4'"
+      "double,set,5,'[1,2,3,4,5,6,7,8,9]'",
+      "int,linkedlist,1.5,'[0,0,0,0,1,1,2,2,3,4,4,4]'"
   })
   public void testGetMedianWithValidInputs(String numericType, String collectionType,
       double expectedMedian, @ConvertWith(StringArrayConverter.class) String[] stringValues) {
@@ -161,16 +163,16 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int,list,6.666666666666667,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
-      "long,list,6.666666666666667,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
-      "float,list,7.545600000000002,ARITHMETIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
-      "double,list,7.545600000000002,ARITHMETIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
+      "int,list,6.666666666666667,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
+      "long,list,6.666666666666667,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
+      "float,list,7.545600000000002,ARITHMETIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
+      "double,list,7.545600000000002,ARITHMETIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
       // Test different collection types
-      "double,set,6.666666666666667,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
-      "double,set,6.666666666666667,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
+      "double,set,6.666666666666667,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
+      "double,set,6.666666666666667,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
       // Test with different means
-      "double,list,8.480633182328768,GEOMETRIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
-      "double,list,10.245142176304704,HARMONIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
+      "double,list,8.480633182328768,GEOMETRIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
+      "double,list,10.245142176304704,HARMONIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
   })
   public void testGetVariance(String numericType, String collectionType, double expectedVariance,
       MeanType meanType, @ConvertWith(StringArrayConverter.class) String[] stringValues) {
@@ -194,16 +196,16 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int,list,2.581988897471611,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
-      "long,list,2.581988897471611,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
-      "float,list,2.7469255541423037,ARITHMETIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
-      "double,list,2.7469255541423037,ARITHMETIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
+      "int,list,2.581988897471611,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
+      "long,list,2.581988897471611,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
+      "float,list,2.7469255541423037,ARITHMETIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
+      "double,list,2.7469255541423037,ARITHMETIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
       // Test different collection types
-      "double,set,2.581988897471611,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
-      "double,linkedlist,2.581988897471611,ARITHMETIC,'1,2,3,4,5,6,7,8,9'",
+      "double,set,2.581988897471611,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
+      "double,linkedlist,2.581988897471611,ARITHMETIC,'[1,2,3,4,5,6,7,8,9]'",
       // Test with different means
-      "double,list,2.9121526715350567,GEOMETRIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
-      "double,list,3.2008033642047904,HARMONIC,'1.5, 2.3, 0.9, 8.3, 5.1'",
+      "double,list,2.9121526715350567,GEOMETRIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
+      "double,list,3.2008033642047904,HARMONIC,'[1.5, 2.3, 0.9, 8.3, 5.1]'",
   })
   public void testGetStandardDeviation(String numericType, String collectionType,
       double expectedStandardDeviation,
@@ -227,12 +229,12 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int, list, 3, '0,4,2', '0,0,0,0,0,1,1,2,2,2,3,4,4,4,4'",
-      "long, list, 3,'0,4,2', '0,0,0,0,0,1,1,2,2,2,3,4,4,4,4'",
-      "float, list, 2, '0.1,2.4', '0.1,0.1,0.1,1.5,2.4,2.4'",
-      "double, list, 2, '0.1,2.4', '0.1,0.1,0.1,1.5,2.4,2.4'",
+      "int, list, 3, '[0,4,2]', '[0,0,0,0,0,1,1,2,2,2,3,4,4,4,4]'",
+      "long, list, 3,'[0,4,2]', '[0,0,0,0,0,1,1,2,2,2,3,4,4,4,4]'",
+      "float, list, 2, '[0.1,2.4]', '[0.1,0.1,0.1,1.5,2.4,2.4]'",
+      "double, list, 2, '[0.1,2.4]', '[0.1,0.1,0.1,1.5,2.4,2.4]'",
       // Test different collection types
-      "double, linkedlist, 2, '0.1,2.4', '0.1,0.1,0.1,1.5,2.4,2.4'",
+      "double, linkedlist, 2, '[0.1,2.4]', '[0.1,0.1,0.1,1.5,2.4,2.4]'",
   })
   public void testGetTopFrequentElements(String numericType, String collectionType, int topNumber,
       @ConvertWith(StringArrayConverter.class) String[] expectedStringMostFrequentElements,
@@ -261,14 +263,14 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int, list, 728, '-7,-6,0,1,2,3,4,728'",
-      "long, list, 728, '-7,-6,0,1,2,3,4,728'",
-      "float, list, 100.1, '-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1'",
-      "float, list, 100.12121, '-15.7,-1.4,-10.1,0.1,1.5,2.4,100.12121'",
-      "double, list, 100.1, '-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1'",
-      "double, list, -1.4, '-15.7,-1.4,-10.1,-1.5,-2.4,-100.1'",
+      "int, list, 728, '[-7,-6,0,1,2,3,4,728]'",
+      "long, list, 728, '[-7,-6,0,1,2,3,4,728]'",
+      "float, list, 100.1, '[-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1]'",
+      "float, list, 100.12121, '[-15.7,-1.4,-10.1,0.1,1.5,2.4,100.12121]'",
+      "double, list, 100.1, '[-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1]'",
+      "double, list, -1.4, '[-15.7,-1.4,-10.1,-1.5,-2.4,-100.1]'",
       // Test different collection types
-      "double, linkedlist, -1.4, '-15.7,-1.4,-10.1,-1.5,-2.4,-100.1'"
+      "double, linkedlist, -1.4, '[-15.7,-1.4,-10.1,-1.5,-2.4,-100.1]'"
   })
   public void testGetMaxValue(String numericType, String collectionType, double expectedMaxValue,
       @ConvertWith(StringArrayConverter.class) String[] stringValues) {
@@ -291,12 +293,12 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int, list, -56, '-7,-6,0,1,2,3,4,-56'",
-      "long, list, -728, '-7,-6,0,1,2,3,4,-728'",
-      "float, list, -15.7, '-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1'",
-      "double, list, -15.7, '-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1'",
+      "int, list, -56, '[-7,-6,0,1,2,3,4,-56]'",
+      "long, list, -728, '[-7,-6,0,1,2,3,4,-728]'",
+      "float, list, -15.7, '[-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1]'",
+      "double, list, -15.7, '[-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1]'",
       // Test different collection types
-      "double, linkedlist, -15.7, '-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1'"
+      "double, linkedlist, -15.7, '[-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1]'"
   })
   public void testGetMinValue(String numericType, String collectionType, double expectedMinValue,
       @ConvertWith(StringArrayConverter.class) String[] stringValues) {
@@ -320,13 +322,13 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int, list, 3, '728,4,3', '-7,-6,0,1,2,3,4,728'",
-      "long, list, 3, '728,4,3', '-7,-6,0,1,2,3,4,728'",
-      "float, list, 4, '100.1,2.4,1.5,0.1', '-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1'",
-      "double, list, 4, '100.1,2.4,1.5,0.1', '-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1'",
-      "double, list, 5, '-1.4,-1.5,-2.4,-10.1,-15.7', '-15.7,-1.4,-10.1,-1.5,-2.4,-100.1'",
+      "int, list, 3, '[728,4,3]', '[-7,-6,0,1,2,3,4,728]'",
+      "long, list, 3, '[728,4,3]', '[-7,-6,0,1,2,3,4,728]'",
+      "float, list, 4, '[100.1,2.4,1.5,0.1]', '[-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1]'",
+      "double, list, 4, '[100.1,2.4,1.5,0.1]', '[-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1]'",
+      "double, list, 5, '[-1.4,-1.5,-2.4,-10.1,-15.7]', '[-15.7,-1.4,-10.1,-1.5,-2.4,-100.1]'",
       // Test different collection types
-      "double, linkedlist, 5, '-1.4,-1.5,-2.4,-10.1,-15.7', '-15.7,-1.4,-10.1,-1.5,-2.4,-100.1'"
+      "double, linkedlist, 5, '[-1.4,-1.5,-2.4,-10.1,-15.7]', '[-15.7,-1.4,-10.1,-1.5,-2.4,-100.1]'"
   })
   public void testGetTopMaxValue(String numericType, String collectionType, int topNumber,
       @ConvertWith(StringArrayConverter.class) String[] expectedStringTopMaxValues,
@@ -355,13 +357,13 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int, list, 3, '-7,-6,0', '-7,-6,0,1,2,3,4,728'",
-      "long, list, 3, '-7,-6,0', '-7,-6,0,1,2,3,4,728'",
-      "float, list, 4, '-15.7,-10.1,-1.4,0.1', '-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1'",
-      "double, list, 4, '-15.7,-10.1,-1.4,0.1', '-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1'",
-      "double, list, 3, '-100.1,-15.7,-10.1', '-15.7,-1.4,-10.1,-1.5,-2.4,-100.1'",
+      "int, list, 3, '[-7,-6,0]', '[-7,-6,0,1,2,3,4,728]'",
+      "long, list, 3, '[-7,-6,0]', '[-7,-6,0,1,2,3,4,728]'",
+      "float, list, 4, '[-15.7,-10.1,-1.4,0.1]', '[-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1]'",
+      "double, list, 4, '[-15.7,-10.1,-1.4,0.1]', '[-15.7,-1.4,-10.1,0.1,1.5,2.4,100.1]'",
+      "double, list, 3, '[-100.1,-15.7,-10.1]', '[-15.7,-1.4,-10.1,-1.5,-2.4,-100.1]'",
       // Test different collection types
-      "double, linkedlist, 3, '-100.1,-15.7,-10.1', '-15.7,-1.4,-10.1,-1.5,-2.4,-100.1'"
+      "double, linkedlist, 3, '[-100.1,-15.7,-10.1]', '[-15.7,-1.4,-10.1,-1.5,-2.4,-100.1]'"
   })
   public void testGetTopMinValue(String numericType, String collectionType, int topNumber,
       @ConvertWith(StringArrayConverter.class) String[] expectedStringTopMaxValues,
@@ -392,12 +394,13 @@ public class StatisticsUtilityTest {
   @ParameterizedTest
   @CsvSource({
       // Test different numeric types
-      "int, list,'0,1,2,3', '4,5,3,1', '0,0,0,0,1,1,1,1,1,2,2,2,3'",
-      "long, list,'0,1,2,3', '4,5,3,1', '0,0,0,0,1,1,1,1,1,2,2,2,3'",
-      "float, list, '1.1,2.4,2.5,10.0,11.1', '2,1,2,1,1', '1.1,1.1,2.4,2.5,2.5,10.0,11.1'",
-      "double, list, '1.1,2.4,2.5,10.0,11.1', '2,1,2,1,1', '1.1,1.1,2.4,2.5,2.5,10.0,11.1'",
+      "int, list,'[0,1,2,3]', '[4,5,3,1]', '[0,0,0,0,1,1,1,1,1,2,2,2,3]'",
+      "long, list,'[0,1,2,3]', '[4,5,3,1]', '[0,0,0,0,1,1,1,1,1,2,2,2,3]'",
+      "float, list, '[1.1,2.4,2.5,10.0,11.1]', '[2,1,2,1,1]', '[1.1,1.1,2.4,2.5,2.5,10.0,11.1]'",
+      "double, list, '[1.1,2.4,2.5,10.0,11.1]', '[2,1,2,1,1]', '[1.1,1.1,2.4,2.5,2.5,10.0,11.1]'",
       // Test different collection types
-      "double, linkedlist, '1.1,2.4,2.5,10.0,11.1', '2,1,2,1,1', '1.1,1.1,2.4,2.5,2.5,10.0,11.1'"
+      "double, linkedlist, '[1.1,2.4,2.5,10.0,11.1]', '[2,1,2,1,1]', "
+          + "'[1.1,1.1,2.4,2.5,2.5,10.0,11.1]'"
   })
   public void testGetFrequency(String numericType, String collectionType,
       @ConvertWith(StringArrayConverter.class) String[] expectedElements,

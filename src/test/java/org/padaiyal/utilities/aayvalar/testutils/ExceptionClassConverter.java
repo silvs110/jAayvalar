@@ -45,6 +45,9 @@ public class ExceptionClassConverter implements ArgumentConverter {
   @Override
   public Object convert(Object expectedExceptionClassString, ParameterContext context)
       throws ArgumentConversionException {
+    if (expectedExceptionClassString == null) {
+      return null;
+    }
     return convertExceptionNameToClass(expectedExceptionClassString.toString());
   }
 }
