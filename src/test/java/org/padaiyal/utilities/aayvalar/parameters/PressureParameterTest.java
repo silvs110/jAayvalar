@@ -1,10 +1,8 @@
 package org.padaiyal.utilities.aayvalar.parameters;
 
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.padaiyal.utilities.aayvalar.parameters.units.PressureUnitEnum;
-import org.padaiyal.utilities.aayvalar.testutils.ExceptionClassConverter;
 
 /**
  * Tests the PressureParameter.
@@ -56,20 +54,19 @@ public class PressureParameterTest
 
   @ParameterizedTest
   @CsvSource({
-      "-1, PASCAL, ATMOSPHERIC, IllegalArgumentException.class",
-      ", PASCAL, ATMOSPHERIC, NullPointerException.class",
-      "1,, ATMOSPHERIC, NullPointerException.class",
-      "1, PASCAL,, NullPointerException.class",
-      "1, PASCAL, UNKNOWN, UnsupportedOperationException.class",
-      "1, UNKNOWN, PASCAL, UnsupportedOperationException.class"
+      "-1, PASCAL, ATMOSPHERIC, java.lang.IllegalArgumentException",
+      ", PASCAL, ATMOSPHERIC, java.lang.NullPointerException",
+      "1,, ATMOSPHERIC, java.lang.NullPointerException",
+      "1, PASCAL,, java.lang.NullPointerException",
+      "1, PASCAL, UNKNOWN, java.lang.UnsupportedOperationException",
+      "1, UNKNOWN, PASCAL, java.lang.UnsupportedOperationException"
   })
   @Override
   void testConvertToWithInvalidInputs(
       Double currentValue,
       PressureUnitEnum currentUnit,
       PressureUnitEnum resultUnit,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
     super.testConvertToWithInvalidInputs(
         currentValue,

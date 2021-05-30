@@ -1,10 +1,8 @@
 package org.padaiyal.utilities.aayvalar.parameters;
 
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.padaiyal.utilities.aayvalar.parameters.units.DistanceUnitEnum;
-import org.padaiyal.utilities.aayvalar.testutils.ExceptionClassConverter;
 
 /**
  * Tests the DistanceParameter.
@@ -64,20 +62,19 @@ public class DistanceParameterTest
 
   @ParameterizedTest
   @CsvSource({
-      "-1, METRE, ANGSTROM, IllegalArgumentException.class",
-      ", METRE, ANGSTROM, NullPointerException.class",
-      "1,, ANGSTROM, NullPointerException.class",
-      "1, METRE,, NullPointerException.class",
-      "1, METRE, UNKNOWN, UnsupportedOperationException.class",
-      "1, UNKNOWN, METRE, UnsupportedOperationException.class"
+      "-1, METRE, ANGSTROM, java.lang.IllegalArgumentException",
+      ", METRE, ANGSTROM, java.lang.NullPointerException",
+      "1,, ANGSTROM, java.lang.NullPointerException",
+      "1, METRE,, java.lang.NullPointerException",
+      "1, METRE, UNKNOWN, java.lang.UnsupportedOperationException",
+      "1, UNKNOWN, METRE, java.lang.UnsupportedOperationException"
   })
   @Override
   void testConvertToWithInvalidInputs(
       Double currentValue,
       DistanceUnitEnum currentUnit,
       DistanceUnitEnum resultUnit,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
     super.testConvertToWithInvalidInputs(
         currentValue,

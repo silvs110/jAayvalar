@@ -1,10 +1,8 @@
 package org.padaiyal.utilities.aayvalar.parameters;
 
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.padaiyal.utilities.aayvalar.parameters.units.TemperatureUnitEnum;
-import org.padaiyal.utilities.aayvalar.testutils.ExceptionClassConverter;
 
 /**
  * Tests the TemperatureParameter.
@@ -54,20 +52,19 @@ public class TemperatureParameterTest
 
   @ParameterizedTest
   @CsvSource({
-      "-1, CELSIUS, FAHRENHEIT, IllegalArgumentException.class",
-      ", CELSIUS, KELVIN, NullPointerException.class",
-      "1,, KELVIN, NullPointerException.class",
-      "1, CELSIUS,, NullPointerException.class",
-      "1, CELSIUS, UNKNOWN, UnsupportedOperationException.class",
-      "1, UNKNOWN, CELSIUS, UnsupportedOperationException.class"
+      "-1, CELSIUS, FAHRENHEIT, java.lang.IllegalArgumentException",
+      ", CELSIUS, KELVIN, java.lang.NullPointerException",
+      "1,, KELVIN, java.lang.NullPointerException",
+      "1, CELSIUS,, java.lang.NullPointerException",
+      "1, CELSIUS, UNKNOWN, java.lang.UnsupportedOperationException",
+      "1, UNKNOWN, CELSIUS, java.lang.UnsupportedOperationException"
   })
   @Override
   void testConvertToWithInvalidInputs(
       Double currentValue,
       TemperatureUnitEnum currentUnit,
       TemperatureUnitEnum resultUnit,
-      @ConvertWith(ExceptionClassConverter.class)
-          Class<? extends Exception> expectedExceptionClass
+      Class<? extends Exception> expectedExceptionClass
   ) {
     super.testConvertToWithInvalidInputs(
         currentValue,
